@@ -24,33 +24,44 @@ async function save(){
   S.busy=true; render();
 
   try{
-    for (const prod of S.prods) {
-      const s=S.sims[prod]||{vc:0,en:0};
-      const c=calc(prod);
-      const profissaoInfo=findProfissao(S.profissao);
-      const row={
-        emailVendedor:S.emailVend,
-        tipoDoc:S.tipoDoc, cpf:S.doc, telefone:S.tel,
-        dataNasc:S.nasc, cep:S.cep, numero:S.numero, uf:S.uf, cidade:S.cidade, vendedor:S.vend,
-        produto:prod,
-        valorCompra:s.vc.toFixed(2), entrada:s.en.toFixed(2),
-        valorParcelado:c.vp.toFixed(2), tc:'1,89%',
-        prazo:S.prazo, carencia:S.car,
-        parcela:c.p.toFixed(2), totalPago:c.tot.toFixed(2),
-        totalComEntrada:s.vc.toFixed(2),
-        data:new Date().toLocaleDateString('pt-BR'),
-        hora:new Date().toLocaleTimeString('pt-BR'),
-        analiseNoNome: S.analiseNoNome,
-        profissao: S.profissao,
-        conselho: profissaoInfo?profissaoInfo.conselho:'',
-        registroConselho: S.registroConselho,
-        ufRegiao: S.ufRegiao,
-        comprovanteRendaUrl: S.anexos.comprovanteRenda?.url || '',
-        declaracaoIrUrl: S.anexos.declaracaoIR?.url || ''
+    const profissaoInfo = findProfissao(S.profissao);
+
+    const simulacoes = S.prods.map(prod => {
+      const s = S.sims[prod] || {vc:0, en:0};
+      const c = calc(prod);
+      return {
+        produto: prod,
+        valorCompra: s.vc.toFixed(2),
+        entrada: s.en.toFixed(2),
+        valorParcelado: c.vp.toFixed(2),
+        parcela: c.p.toFixed(2),
+        totalPago: c.tot.toFixed(2),
+        totalComEntrada: s.vc.toFixed(2)
       };
-      const url = WH+'?data='+encodeURIComponent(JSON.stringify(row));
-      await jsonpFetch(url); // ← aguarda cada uma terminar antes de disparar a próxima
-    }
+    });
+
+    const row = {
+      emailVendedor: S.emailVend,
+      tipoDoc: S.tipoDoc, cpf: S.doc, telefone: S.tel,
+      dataNasc: S.nasc, cep: S.cep, numero: S.numero, vendedor: S.vend,
+      tc: '1,89%', prazo: S.prazo, carencia: S.car,
+      data: new Date().toLocaleDateString('pt-BR'),
+      hora: new Date().toLocaleTimeString('pt-BR'),
+      analiseNoNome: S.analiseNoNome,
+      profissao: S.profissao,
+      conselho: profissaoInfo ? profissaoInfo.conselho : '',
+      registroConselho: S.registroConselho,
+      ufRegiao: S.ufRegiao,
+      uf: S.uf,
+      cidade: S.cidade,
+      comprovanteRendaUrl: S.anexos.comprovanteRenda?.url || '',
+      declaracaoIrUrl: S.anexos.declaracaoIR?.url || '',
+      simulacoes: simulacoes
+    };
+
+    const url = WH+'?data='+encodeURIComponent(JSON.stringify(row));
+    await jsonpFetch(url);
+
     showToast('✓ Análise de crédito enviada! Resultado em instantes.','ok');
   }catch(e){
     showToast('Erro inesperado. Verifique sua conexão.','er');
