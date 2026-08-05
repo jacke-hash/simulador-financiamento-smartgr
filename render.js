@@ -308,6 +308,22 @@ function s3HTML(){
         ${S.err.numero?`<div class="err">${S.err.numero}</div>`:''}
       </div>
     </div>
+    <div class="r2">
+      <div class="fld"><label class="lbl">UF</label>
+        <select class="inp" id="iuf">
+          <option value=""${!S.uf?' selected':''}>Selecione...</option>
+          ${UFS.map(u=>`<option value="${u}"${S.uf===u?' selected':''}>${u}</option>`).join('')}
+        </select>
+        ${S.err.uf?`<div class="err">${S.err.uf}</div>`:''}
+      </div>
+      <div class="fld"><label class="lbl">Cidade</label>
+        <select class="inp" id="icidade" ${(!S.uf||S.carregandoCidades)?'disabled':''}>
+          <option value=""${!S.cidade?' selected':''}>${S.carregandoCidades?'Carregando...':'Selecione...'}</option>
+          ${S.cidadesDisponiveis.map(c=>`<option value="${c}"${S.cidade===c?' selected':''}>${c}</option>`).join('')}
+        </select>
+        ${S.err.cidade?`<div class="err">${S.err.cidade}</div>`:''}
+      </div>
+    </div>
     </div>`:''}
     <div class="fld"><label class="lbl">Vendedor</label>
       <input class="inp" id="ivend" placeholder="Nome do vendedor" value="${S.vend}">

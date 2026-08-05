@@ -54,6 +54,21 @@ const UFS = ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','P
 function findProfissao(value) {
   return PROFISSOES.find(p => p.value === value) ?? null;
 }
+
+async function carregarCidades(uf) {
+  S.uf = uf; S.cidade = ''; S.cidadesDisponiveis = [];
+  if (!uf) { render(); return; }
+  S.carregandoCidades = true; render();
+  try {
+    const res = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios`);
+    const data = await res.json();
+    S.cidadesDisponiveis = data.map(m => m.nome).sort((a, b) => a.localeCompare(b, 'pt-BR'));
+  } catch (e) {
+    S.cidadesDisponiveis = [];
+    showToast('Erro ao carregar cidades. Tente novamente.', 'er');
+  }
+  S.carregandoCidades = false; render();
+}
 function regioes(n) {
   return Array.from({length: n}, (_, i) => String(i + 1));
 }
@@ -63,6 +78,7 @@ let S = {
   emailVend: '',
   prods:[], sims:{}, prazo:21, car:30,
   tipoDoc:'CPF', doc:'', tel:'', nasc:'', cep:'', numero:'', vend:'',
+  uf:'', cidade:'', cidadesDisponiveis:[], carregandoCidades:false,
   analiseNoNome: '', // '' | 'proprio' | 'fiador' — vazio força a seleção antes de mostrar os campos
   profissao:'', registroConselho:'', ufRegiao:'',
   anexos: { comprovanteRenda: null, declaracaoIR: null },

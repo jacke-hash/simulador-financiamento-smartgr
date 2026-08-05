@@ -23,6 +23,8 @@ function val3(){
     if(!S.nasc) e.nasc=S.tipoDoc==='CPF'?'Data de nascimento obrigatória':'Data de abertura obrigatória';
     if(S.cep.replace(/\D/g,'').length<8) e.cep='CEP inválido';
     if(!S.numero.trim()) e.numero='Obrigatório';
+    if(!S.uf) e.uf='Selecione o UF';
+    if(!S.cidade) e.cidade='Selecione a cidade';
   }
 
   if(!S.vend.trim())   e.vend='Obrigatório';

@@ -31,7 +31,7 @@ async function save(){
       const row={
         emailVendedor:S.emailVend,
         tipoDoc:S.tipoDoc, cpf:S.doc, telefone:S.tel,
-        dataNasc:S.nasc, cep:S.cep, numero:S.numero, vendedor:S.vend,
+        dataNasc:S.nasc, cep:S.cep, numero:S.numero, uf:S.uf, cidade:S.cidade, vendedor:S.vend,
         produto:prod,
         valorCompra:s.vc.toFixed(2), entrada:s.en.toFixed(2),
         valorParcelado:c.vp.toFixed(2), tc:'1,89%',

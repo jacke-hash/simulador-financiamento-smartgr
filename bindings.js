@@ -91,12 +91,16 @@ function bind3(){
   const cepEl    =document.getElementById('icep');
   const nascEl   =document.getElementById('inasc');
   const numeroEl =document.getElementById('inumero');
+  const ufEl2    =document.getElementById('iuf');
+  const cidadeEl =document.getElementById('icidade');
   if(tipoDocEl) tipoDocEl.onchange=e=>{S.tipoDoc=e.target.value;S.doc='';S.nasc='';S.err.doc='';S.err.nasc='';render()};
   if(docEl)     docEl.oninput    =e=>{S.doc=mDoc(e.target.value,S.tipoDoc);e.target.value=S.doc};
   if(telEl)     telEl.oninput    =e=>{S.tel=mTel(e.target.value);e.target.value=S.tel}; // ← usa nova mTel
   if(cepEl)     cepEl.oninput    =e=>{S.cep=mCEP(e.target.value);e.target.value=S.cep};
   if(nascEl)    nascEl.onchange  =e=>{S.nasc=e.target.value};
   if(numeroEl)  numeroEl.oninput =e=>{S.numero=e.target.value};
+  if(ufEl2)     ufEl2.onchange   =e=>{carregarCidades(e.target.value)};
+  if(cidadeEl)  cidadeEl.onchange=e=>{S.cidade=e.target.value};
 
   document.getElementById('ivend').oninput   =e=>{S.vend=e.target.value};
 
