@@ -128,6 +128,14 @@ function bind3(){
       uploadAnexo(cpf,campo,file);
     };
   });
+  document.querySelectorAll('.anexo-trocar').forEach(btn=>{
+    btn.onclick=()=>{
+      const campo=btn.dataset.campo;
+      S.uploadStatus[campo]='idle';
+      S.anexos[campo]=null;
+      render();
+    };
+  });
 
   document.getElementById('bbk3').onclick    =()=>{S.scr=2;S.err={};render()};
   document.getElementById('bsv').onclick     =()=>{if(val3()) save(); else render();};

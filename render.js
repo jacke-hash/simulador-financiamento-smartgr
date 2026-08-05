@@ -228,7 +228,22 @@ function profissaoHTML(){
 function anexosHTML(){
   const item=(campo,label)=>{
     const st=S.uploadStatus[campo];
-    const statusTxt=st==='uploading'?'Enviando...':st==='done'?'✓ Enviado':st==='error'?'Erro no envio, tente novamente':'';
+    const anexo=S.anexos[campo];
+    const isDone=st==='done'&&anexo;
+    const statusTxt=st==='uploading'?'Enviando...':st==='error'?'Erro no envio, tente novamente':'';
+
+    if(isDone){
+      return`<div class="fld">
+        <label class="lbl">${label}</label>
+        <div class="anexo-done">
+          <span class="anexo-check">✓</span>
+          <span class="anexo-nome">${anexo.nomeArquivo||'Arquivo enviado'}</span>
+          <button type="button" class="anexo-trocar" data-campo="${campo}">Trocar</button>
+        </div>
+        <input class="inp-hidden" type="file" id="ifile${campo}" accept=".pdf,.jpg,.jpeg,.png" style="display:none">
+      </div>`;
+    }
+
     return`<div class="fld">
       <label class="lbl">${label}</label>
       <input class="inp" type="file" id="ifile${campo}" accept=".pdf,.jpg,.jpeg,.png">

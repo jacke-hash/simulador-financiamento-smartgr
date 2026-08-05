@@ -55,6 +55,10 @@ select.inp{appearance:none;cursor:pointer;background-image:url("data:image/svg+x
 .doc-select{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:11px 28px 11px 10px;font-size:14px;color:var(--primary);outline:none;transition:.18s;font-family:'DM Sans',inherit;appearance:none;cursor:pointer;font-weight:700}
 .doc-select:focus{border-color:var(--primary);background:#fff}
 .err{font-size:11px;color:#e03535;margin-top:4px;font-weight:500}
+.anexo-done{display:flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid #16a34a;border-radius:8px;background:#f0fdf4}
+.anexo-check{color:#16a34a;font-weight:700;font-size:15px}
+.anexo-nome{flex:1;font-size:13px;color:#166534;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.anexo-trocar{background:none;border:none;color:#385384;font-size:12px;font-weight:600;text-decoration:underline;cursor:pointer;padding:0}
 
 /* ── BUTTONS ── */
 .btn{width:100%;background:var(--primary);color:#fff;border:none;border-radius:8px;padding:13px;font-size:14px;font-weight:700;cursor:pointer;transition:.18s;letter-spacing:.3px;font-family:'DM Sans',inherit}
