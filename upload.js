@@ -1,6 +1,6 @@
 /* ── Upload de Anexos (Feature 4) ────────────────── */
 /* TODO: apontar para o domínio real do Worker após o deploy (custom domain ou *.workers.dev) */
-const UPLOAD_URL = "https://smartgr-upload-anexos-financiamento.SEU_SUBDOMINIO.workers.dev/upload";
+const UPLOAD_URL = "https://smartgr-upload-anexos-financiamento.jacke-a59.workers.dev/upload";
 
 function uploadAnexo(cpf,campo,file){
   const tipoWorker = campo==='comprovanteRenda' ? 'comprovante-renda' : 'declaracao-ir';
