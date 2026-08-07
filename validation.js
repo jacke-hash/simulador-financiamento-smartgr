@@ -1,4 +1,5 @@
 /* ── Validações ─────────────────────────────────── */
+/* ── Validações ─────────────────────────────────── */
 function val1(){
   const e={};
   if(!S.emailVend.trim()) e.emailVend='Informe seu e-mail para continuar';
@@ -37,9 +38,6 @@ function val3(){
       if(!S.ufRegiao)                e.ufRegiao='Obrigatório';
     }
   }
-
-  if(!S.anexos.comprovanteRenda) e.comprovanteRenda='Envie o comprovante de renda';
-  if(!S.anexos.declaracaoIR)     e.declaracaoIR='Envie a declaração de IR';
-
+  
   S.err=e; return !Object.keys(e).length;
 }
