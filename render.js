@@ -273,13 +273,13 @@ function s3HTML(){
   return`<div class="resumo-bar">${resumo}</div>
   <div class="vend-chip"><span>✉️</span>${S.emailVend}</div>
   <div class="card">
-    <div class="ct">${S.analiseNoNome==='fiador'?'Dados do Fiador/Terceiro':'Dados do Cliente'}</div>
+    <div class="ct">${S.analiseNoNome==='fiador'?'Dados do Fiador':'Dados do Cliente'}</div>
     <div class="fld">
       <label class="lbl">Em nome de quem será esta análise de crédito?</label>
       <select class="inp" id="ianaliseNoNome">
         <option value=""${!S.analiseNoNome?' selected':''}>Selecione...</option>
-        <option value="proprio"${S.analiseNoNome==='proprio'?' selected':''}>Em meu nome</option>
-        <option value="fiador"${S.analiseNoNome==='fiador'?' selected':''}>Em nome de um fiador/terceiro</option>
+        <option value="proprio"${S.analiseNoNome==='proprio'?' selected':''}>Em nome do cliente</option>
+        <option value="fiador"${S.analiseNoNome==='fiador'?' selected':''}>Em nome do fiador</option>
       </select>
       ${S.err.analiseNoNome?`<div class="err">${S.err.analiseNoNome}</div>`:''}
     </div>
