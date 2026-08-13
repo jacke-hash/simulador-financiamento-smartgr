@@ -44,6 +44,7 @@ async function save(){
       emailVendedor: S.emailVend,
       tipoDoc: S.tipoDoc, cpf: S.doc, telefone: S.tel,
       dataNasc: S.nasc, cep: S.cep, numero: S.numero, vendedor: S.vend,
+      observacao: S.observacao || '',
       tc: '1,89%', prazo: S.prazo, carencia: S.car,
       data: new Date().toLocaleDateString('pt-BR'),
       hora: new Date().toLocaleTimeString('pt-BR'),

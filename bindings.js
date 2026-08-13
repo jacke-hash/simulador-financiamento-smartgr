@@ -104,6 +104,10 @@ function bind3(){
 
   document.getElementById('ivend').oninput   =e=>{S.vend=e.target.value};
 
+  /* ── Observações (opcional) ─────────────────────── */
+  const obsEl=document.getElementById('iobservacao');
+  if(obsEl) obsEl.oninput=e=>{S.observacao=e.target.value};
+
   /* ── Profissão / Investidor (Feature 3) ────────── */
   document.getElementById('iprofissao').onchange=e=>{
     S.profissao=e.target.value;

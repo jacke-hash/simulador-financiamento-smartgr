@@ -83,5 +83,6 @@ let S = {
   profissao:'', registroConselho:'', ufRegiao:'',
   anexos: { comprovanteRenda: null, declaracaoIR: null },
   uploadStatus: { comprovanteRenda: 'idle', declaracaoIR: 'idle' },
+  observacao: '',
   err:{}, busy:false, toast:null
 };

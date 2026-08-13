@@ -10,6 +10,10 @@ function parsePT(v){
 
 function validEmail(e){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.trim())}
 
+function escHtml(v){
+  return String(v||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
 /* ── Máscaras ───────────────────────────────────── */
 function mDoc(v,tipo){
   const d=v.replace(/\D/g,'');

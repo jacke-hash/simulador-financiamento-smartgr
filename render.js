@@ -224,6 +224,16 @@ function profissaoHTML(){
   </div>`;
 }
 
+/* ── HTML: Observações ───────────────────────────── */
+function observacaoHTML(){
+  return`<div class="card">
+    <div class="ct">Observações</div>
+    <div class="fld">
+      <textarea class="inp" id="iobservacao" rows="3" placeholder="Ex: local do cliente, evento de origem, contato preferencial, orçamento...">${escHtml(S.observacao)}</textarea>
+    </div>
+  </div>`;
+}
+
 /* ── HTML: Anexos (Feature 4) ────────────────────── */
 function anexosHTML(){
   const item=(campo,label)=>{
@@ -346,6 +356,7 @@ function s3HTML(){
     </div>
   </div>
   ${profissaoHTML()}
+  ${observacaoHTML()}
   ${anexosHTML()}
   <div class="brow">
     <button class="btnb" id="bbk3">← Voltar</button>
