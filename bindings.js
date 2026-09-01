@@ -26,11 +26,14 @@ function bind2(){
     if(vcEl){
       vcEl.oninput=e=>{
         s.vc=parsePT(e.target.value);
-        if(s.enMode==='pct'){
+        if(s.vc===0){
+          s.en=0;
+          syncEntradaDOM(prod,i);
+        } else if(s.enMode==='pct'){
           s.enPct=Math.max(30,Math.min(100,s.enPct||30));
           s.en=s.vc*(s.enPct/100);
           syncEntradaDOM(prod,i);
-        } else if(s.en===0&&s.vc>0){
+        } else if(s.en===0){
           s.en=s.vc*0.30; s.enPct=30; syncEntradaDOM(prod,i);
         }
         updProd(prod,i);
