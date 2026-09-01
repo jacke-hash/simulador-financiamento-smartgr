@@ -17,7 +17,7 @@ function bind2(){
   if(carEl)   carEl.onchange  =e=>{S.car  =parseInt(e.target.value);render()};
 
   S.prods.forEach((prod,i)=>{
-    if(!S.sims[prod]) S.sims[prod]={vc:0,en:0,enMode:'brl',enPct:20};
+    if(!S.sims[prod]) S.sims[prod]={vc:0,en:0,enMode:'brl',enPct:30};
     const s=S.sims[prod];
     const vcEl  =document.getElementById('ivc'+i);
     const enEl  =document.getElementById('ien'+i);
@@ -27,11 +27,11 @@ function bind2(){
       vcEl.oninput=e=>{
         s.vc=parsePT(e.target.value);
         if(s.enMode==='pct'){
-          s.enPct=Math.max(20,Math.min(100,s.enPct||20));
+          s.enPct=Math.max(30,Math.min(100,s.enPct||30));
           s.en=s.vc*(s.enPct/100);
           syncEntradaDOM(prod,i);
         } else if(s.en===0&&s.vc>0){
-          s.en=s.vc*0.20; s.enPct=20; syncEntradaDOM(prod,i);
+          s.en=s.vc*0.30; s.enPct=30; syncEntradaDOM(prod,i);
         }
         updProd(prod,i);
       };
@@ -42,11 +42,11 @@ function bind2(){
       modeEl.onchange=e=>{
         s.enMode=e.target.value;
         if(s.enMode==='pct'){
-          s.enPct=s.vc>0?(s.en/s.vc*100):20;
-          s.enPct=Math.max(20,Math.min(100,s.enPct));
+          s.enPct=s.vc>0?(s.en/s.vc*100):30;
+          s.enPct=Math.max(30,Math.min(100,s.enPct));
           s.en=s.vc*(s.enPct/100);
         } else {
-          if(s.enPct<20) s.enPct=20;
+          if(s.enPct<30) s.enPct=30;
           s.en=s.vc*(s.enPct/100);
         }
         syncEntradaDOM(prod,i);updProd(prod,i);
@@ -143,4 +143,9 @@ function bind3(){
 
   document.getElementById('bbk3').onclick    =()=>{S.scr=2;S.err={};render()};
   document.getElementById('bsv').onclick     =()=>{if(val3()) save(); else render();};
+}
+
+/* ── Bind Step 4 ────────────────────────────────── */
+function bind4(){
+  document.getElementById('bnova').onclick=()=>{resetSimulador();};
 }

@@ -73,6 +73,23 @@ function regioes(n) {
   return Array.from({length: n}, (_, i) => String(i + 1));
 }
 
+function resetSimulador(){
+  S = {
+    scr: 1,
+    emailVend: '',
+    prods:[], sims:{}, prazo:21, car:30,
+    tipoDoc:'CPF', doc:'', tel:'', nasc:'', cep:'', numero:'', vend:'',
+    uf:'', cidade:'', cidadesDisponiveis:[], carregandoCidades:false,
+    analiseNoNome: '',
+    profissao:'', registroConselho:'', ufRegiao:'',
+    anexos: { comprovanteRenda: null, declaracaoIR: null },
+    uploadStatus: { comprovanteRenda: 'idle', declaracaoIR: 'idle' },
+    observacao: '',
+    err:{}, busy:false, toast:null
+  };
+  render();
+}
+
 let S = {
   scr: 1,
   emailVend: '',

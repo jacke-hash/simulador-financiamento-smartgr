@@ -63,7 +63,7 @@ async function save(){
     const url = WH+'?data='+encodeURIComponent(JSON.stringify(row));
     await jsonpFetch(url);
 
-    showToast('✓ Análise de crédito enviada! Resultado em instantes.','ok');
+    S.scr=4;
   }catch(e){
     showToast('Erro inesperado. Verifique sua conexão.','er');
   }

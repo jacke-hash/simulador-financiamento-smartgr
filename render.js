@@ -18,7 +18,7 @@ function syncEntradaDOM(prod,i){
 
 /* ── HTML: card simulação produto ──────────────── */
 function psHTML(prod,i){
-  const s=S.sims[prod]||{vc:0,en:0,enMode:'brl',enPct:20};
+  const s=S.sims[prod]||{vc:0,en:0,enMode:'brl',enPct:30};
   const c=calc(prod);
   const enMode=s.enMode||'brl';
   const pctReal=s.vc>0?(s.en/s.vc*100):0;
@@ -33,13 +33,13 @@ function psHTML(prod,i){
         ${S.err['vc'+i]?`<div class="err">${S.err['vc'+i]}</div>`:''}
       </div>
       <div class="fld">
-        <label class="lbl">Entrada (mín. 20%)</label>
+        <label class="lbl">Entrada (mín. 30%)</label>
         <div class="en-group">
           <select class="en-type" id="ienmode${i}">
             <option value="brl"${enMode==='brl'?' selected':''}>R$</option>
             <option value="pct"${enMode==='pct'?' selected':''}>%</option>
           </select>
-          <input class="en-inp" id="ien${i}" placeholder="${enMode==='brl'?'0,00':'20,0'}" value="${enVal}" inputmode="decimal">
+          <input class="en-inp" id="ien${i}" placeholder="${enMode==='brl'?'0,00':'30,0'}" value="${enVal}" inputmode="decimal">
         </div>
         <div class="en-hint" id="enhint${i}" style="display:${hintTxt?'block':'none'}">${hintTxt}</div>
       </div>
@@ -366,6 +366,18 @@ function s3HTML(){
   </div>`;
 }
 
+/* ── HTML: Step 4 — Confirmação ──────────────────── */
+function s4HTML(){
+  return`<div class="card">
+    <div class="email-hero">
+      <div class="email-icon" style="background:rgba(22,163,74,.12);color:#16a34a">✓</div>
+      <div class="email-title">Análise enviada com sucesso</div>
+      <div class="email-sub">Aguarde o retorno da nossa equipe</div>
+    </div>
+    <button class="btn" id="bnova">Fazer nova simulação</button>
+  </div>`;
+}
+
 /* ── Render ─────────────────────────────────────── */
 function render(){
   const n=S.scr;
@@ -373,14 +385,15 @@ function render(){
   <div class="hdr">
     <div class="hdr-logo">Smart GR<span>Simulador de Financiamento</span></div>
   </div>
-  <div class="stps">
+  ${n<=3?`<div class="stps">
     <div class="stp${n===1?' on':' ok'}">① Acesso${n>1?' ✓':''}</div>
     <div class="stp${n===2?' on':n>2?' ok':''}">② Simulação${n>2?' ✓':''}</div>
     <div class="stp${n===3?' on':''}">③ Cadastro</div>
-  </div>
-  <div class="wrap">${n===1?s1HTML():n===2?s2HTML():s3HTML()}</div>
+  </div>`:''}
+  <div class="wrap">${n===1?s1HTML():n===2?s2HTML():n===3?s3HTML():s4HTML()}</div>
   ${S.toast?`<div class="toast ${S.toast.tipo}">${S.toast.msg}</div>`:''}`;
   if(n===1) bind1();
   else if(n===2) bind2();
-  else bind3();
+  else if(n===3) bind3();
+  else bind4();
 }
